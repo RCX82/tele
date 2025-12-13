@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XHamster Video Downloader</title>
+    <title>YouTube Subscribe Adder</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,37 +21,43 @@
     </style>
 </head>
 <body>
-    <h1>XHamster Video Downloader</h1>
-    <input type="text" id="videoUrl" placeholder="Enter XHamster video URL">
-    <button onclick="downloadVideo()">Download Video</button>
+    <h1>YouTube Subscribe Adder</h1>
+    <input type="text" id="channelId" placeholder="Enter YouTube Channel ID">
+    <button onclick="addSubscribe()">Add Subscribe</button>
     <p id="error"></p>
 
     <script>
-        function downloadVideo() {
-            const videoUrl = document.getElementById('videoUrl').value;
+        async function addSubscribe() {
+            const channelId = document.getElementById('channelId').value;
             const errorElement = document.getElementById('error');
 
-            if (!videoUrl) {
-                errorElement.textContent = 'Please enter a video URL.';
+            if (!channelId) {
+                errorElement.textContent = 'Please enter a YouTube Channel ID.';
                 return;
             }
 
             errorElement.textContent = '';
 
-            fetch(`https://api.skrape.it/video/downloader?url=${encodeURIComponent(videoUrl)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        const videoUrl = data.downloadUrl;
-                        window.location.href = videoUrl;
-                    } else {
-                        errorElement.textContent = 'Failed to fetch video download URL.';
-                    }
-                })
-                .catch(error => {
-                    errorElement.textContent = 'An error occurred while downloading the video.';
-                    console.error('Error:', error);
+            try {
+                const response = await fetch('/api/add-subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ channelId })
                 });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Subscribe added successfully!');
+                } else {
+                    errorElement.textContent = data.message || 'Failed to add subscribe.';
+                }
+            } catch (error) {
+                errorElement.textContent = 'An error occurred while adding subscribe.';
+                console.error('Error:', error);
+            }
         }
     </script>
 </body>
