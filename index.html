@@ -1,606 +1,135 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reaction Hub</title>
-
+  <title>SSYouTube - Download Video YouTube Gratis</title>
   <style>
-    :root{
-      --bg1:#f4f8ff;
-      --bg2:#e9f1ff;
-
-      --card:#ffffff;
-      --stroke:#dbe7ff;
-
-      --text:#1e293b;
-      --muted:#64748b;
-
-      --blue:#3b82f6;
-      --blue2:#60a5fa;
-
-      --soft:#f1f6ff;
-
-      --shadow: 0 20px 40px rgba(59,130,246,.12);
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 0;
+      color: #333;
     }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 400px at 10% 0%, #dbeafe, transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, #e0f2fe, transparent 60%),
-        radial-gradient(900px 500px at 50% 95%, #eff6ff, transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      padding:24px 14px 40px;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
+    .container {
+      max-width: 580px;
+      margin: 60px auto;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      text-align: center;
     }
-
-    .frame{ width:min(480px, 100%); }
-
-    .card{
-      position:relative;
-      background:var(--card);
-      border:1px solid var(--stroke);
-      border-radius:26px;
-      box-shadow:var(--shadow);
-      padding:22px 18px 18px;
-      overflow:hidden;
+    h1 {
+      color: #c4302b;
+      margin-bottom: 10px;
+      font-size: 2.4rem;
     }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      border-radius:28px;
-      padding:2px;
-      background:linear-gradient(135deg, rgba(59,130,246,.35), rgba(96,165,250,.20), rgba(219,234,254,.55));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events:none;
+    .subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
     }
-
-    /* ===== HEADER ===== */
-    .top-pill{
-      display:flex;
-      justify-content:center;
-      margin-bottom:14px;
-      position:relative;
-      z-index:1;
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
     }
-
-    .pill{
-      padding:10px 18px;
-      border-radius:999px;
-      background:var(--soft);
-      border:1px solid var(--stroke);
-      color:var(--blue);
-      font-weight:800;
-      letter-spacing:.18em;
-      font-size:12px;
-      text-transform:uppercase;
+    input[type="text"] {
+      padding: 16px 20px;
+      font-size: 1.1rem;
+      border: 2px solid #ddd;
+      border-radius: 50px;
+      outline: none;
+      transition: border-color 0.3s;
     }
-
-    /* ===== TITLE ===== */
-    h1{
-      margin:6px 0 6px;
-      font-size:40px;
-      line-height:1.05;
-      text-align:center;
-      font-weight:900;
-      position:relative;
-      z-index:1;
+    input[type="text"]:focus {
+      border-color: #c4302b;
     }
-
-    h1 .accent{
-      background:linear-gradient(90deg, var(--blue), var(--blue2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+    button {
+      background: #c4302b;
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
     }
-
-    .subtitle{
-      margin:0 0 18px;
-      text-align:center;
-      color:var(--muted);
-      font-size:14px;
-      position:relative;
-      z-index:1;
+    button:hover {
+      background: #a8241f;
+      transform: translateY(-2px);
     }
-
-    /* ===== TABS ===== */
-    .tabs{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin:12px 0 14px;
-      padding:0 2px;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--muted);
-      position:relative;
-      z-index:1;
+    .formats {
+      margin-top: 40px;
+      display: none; /* muncul setelah paste link */
     }
-
-    .tab{
-      flex:1;
-      padding:10px 10px;
-      cursor:pointer;
-      border-radius:12px;
-      text-align:center;
-      border:1px solid transparent;
-      user-select:none;
+    .format-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
     }
-
-    .tab.active{
-      color:var(--blue);
-      background:var(--soft);
-      border-color:var(--stroke);
-      font-weight:800;
+    .format-btn:hover { background: #388E3C; }
+    .info {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
     }
-
-    /* ===== FORM ===== */
-    .field{ margin:14px 0; position:relative; z-index:1; }
-
-    .label-row{
-      display:flex;
-      justify-content:space-between;
-      margin-bottom:8px;
-      padding:0 6px;
-    }
-
-    .label{
-      font-size:11px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted);
-      font-weight:700;
-    }
-
-    .status{
-      font-size:11px;
-      letter-spacing:.18em;
-      color:var(--blue);
-      font-weight:800;
-      text-transform:uppercase;
-    }
-
-    .input{
-      width:100%;
-      padding:14px 16px;
-      border-radius:16px;
-      border:1px solid var(--stroke);
-      background:#f9fbff;
-      color:var(--text);
-      outline:none;
-    }
-
-    .input:focus{
-      border-color:var(--blue);
-      box-shadow:0 0 0 3px rgba(59,130,246,.15);
-    }
-
-    .input::placeholder{
-      color:#94a3b8;
-    }
-
-    /* ===== HINT ===== */
-    .hint{
-      display:flex;
-      gap:10px;
-      margin-top:8px;
-      padding:12px 14px;
-      border-radius:14px;
-      background:var(--soft);
-      color:var(--muted);
-      font-size:13px;
-      border:1px solid var(--stroke);
-    }
-
-    .hint .i{
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      background:white;
-      border:1px solid var(--stroke);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      color:var(--blue);
-      flex:0 0 20px;
-    }
-
-    /* ===== BUTTONS ===== */
-    .row2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-      position:relative;
-      z-index:1;
-    }
-
-    .btn2{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid var(--stroke);
-      background:white;
-      color:var(--blue);
-      font-weight:900;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-
-    .btn2:hover{
-      background:var(--soft);
-    }
-
-    .btn{
-      width:100%;
-      margin-top:16px;
-      padding:18px;
-      border:none;
-      border-radius:18px;
-      background:linear-gradient(90deg, var(--blue), var(--blue2));
-      color:white;
-      font-weight:900;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-size:15px;
-      cursor:pointer;
-      box-shadow:0 18px 40px rgba(59,130,246,.35);
-      position:relative;
-      z-index:1;
-    }
-
-    .btn:disabled{
-      opacity:.6;
-      cursor:not-allowed;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer{
-      margin-top:14px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      padding:0 6px;
-      font-size:12px;
-      color:var(--muted);
-      position:relative;
-      z-index:1;
-    }
-
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-
-    /* ===== TOAST ===== */
-    .toast{
-      margin-top:14px;
-      padding:14px;
-      border-radius:16px;
-      border:1px solid var(--stroke);
-      background:#f8fbff;
-      display:none;
-      position:relative;
-      z-index:1;
-    }
-
-    .toast.show{ display:block; }
-
-    pre{
-      margin-top:10px;
-      padding:12px;
-      border-radius:14px;
-      background:white;
-      border:1px solid var(--stroke);
-      max-height:240px;
-      overflow:auto;
-    }
-
-    /* ===== CREDIT BOX ===== */
-    .credit{
-      margin-top:14px;
-      padding:14px;
-      border-radius:18px;
-      border:1px solid var(--stroke);
-      background:linear-gradient(180deg, #ffffff, var(--soft));
-      position:relative;
-      z-index:1;
-    }
-
-    .credit-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-    }
-
-    .credit-title{
-      font-weight:900;
-      letter-spacing:.08em;
-    }
-
-    .badge{
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background:white;
-      color:var(--blue);
-      font-weight:900;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      white-space:nowrap;
-    }
-
-    .socials{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:8px;
-    }
-
-    .social{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid var(--stroke);
-      background:white;
-      text-decoration:none;
-      color:var(--text);
-    }
-
-    .social small{
-      color:var(--muted);
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    .social b{
-      color:var(--blue);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size:13px;
-    }
-
-    .social:hover{
-      background:var(--soft);
-    }
-
-    .wa-bar{
-      margin-top:10px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .linkbtn{
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--stroke);
-      background:white;
-      color:var(--blue);
-      font-weight:900;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      cursor:pointer;
-      text-decoration:none;
-      text-align:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .linkbtn:hover{ background:var(--soft); }
-
-    @media (max-width:380px){
-      h1{ font-size:36px; }
-      .wa-bar{ grid-template-columns:1fr; }
+    @media (max-width: 500px) {
+      .container { margin: 30px 15px; padding: 30px 20px; }
+      h1 { font-size: 2rem; }
     }
   </style>
 </head>
-
 <body>
-  <div class="frame">
-    <div class="card">
-      <div class="top-pill">
-        <div class="pill">BAYU GARAGE</div>
-      </div>
 
-      <h1>REACTION <span class="accent">HUB</span></h1>
-      <p class="subtitle"></p>
-
-      <div class="tabs">
-        <div class="tab active" id="tabTarget">TARGET CONFIGURATION</div>
-        <div class="tab" id="tabLink">LINK POSTINGAN</div>
-      </div>
-
-      <div class="field">
-        <div class="label-row">
-          <div class="label">Link Postingan</div>
-        </div>
-        <input id="link" class="input" placeholder="" />
-      </div>
-
-      <div class="field">
-        <div class="label-row">
-          <div class="label">Reaction Payload</div>
-          <div class="status" id="readyBadge">READY</div>
-        </div>
-        <input id="payload" class="input" placeholder="🔥, 🚀, ❤️" />
-        <div class="hint">
-          <div class="i">i</div>
-          <div></div>
-        </div>
-      </div>
-
-      <div class="row2">
-        <button class="btn2" id="openBtn">OPEN CHANNEL</button>
-        <button class="btn2" id="clearBtn">CLEAR</button>
-      </div>
-
-      <button class="btn" id="runBtn">ENTER</button>
-
-      <div class="footer">
-        <div>Backend: <span class="mono">/api/react</span></div>
-        <div>Status: <span id="statusText" class="mono">idle</span></div>
-      </div>
-
-      <div class="toast" id="toast">
-        <div id="toastMsg" class="mono"></div>
-        <pre id="respBox" class="mono"></pre>
-      </div>
-
-      <!-- CREDIT / AUTHOR -->
-      <div class="credit">
-        <div class="credit-top">
-          <div class="credit-title">Dibuat oleh: <span style="color:var(--blue);font-weight:900">BAYU GARAGE</span></div>
-          <div class="badge">OFFICIAL</div>
-        </div>
-
-        <div class="socials">
-          <a class="social" href="https://t.me/RayyAckerman" target="_blank" rel="noopener noreferrer">
-            <small>Telegram</small>
-            <b>@BAAYU GARAGE</b>
-          </a>
-
-          <a class="social" href="https://www.tiktok.com/@rayysuki" target="_blank" rel="noopener noreferrer">
-            <small>TikTok</small>
-            <b>@BAYU GARAGE</b>
-          </a>
-
-          <a class="social" href="https://whatsapp.com/channel/0029Vb6kx8FFi8xZBhjm2g0m" target="_blank" rel="noopener noreferrer">
-            <small>Saluran WhatsApp</small>
-            <b>Join Channel</b>
-          </a>
-        </div>
-
-        <div class="wa-bar">
-          <a class="linkbtn" href="https://whatsapp.com/channel/0029Vb6kx8FFi8xZBhjm2g0m" target="_blank" rel="noopener noreferrer">
-            OPEN WA CHANNEL
-          </a>
-          <button class="linkbtn" id="copyChannelBtn" type="button">
-            COPY CHANNEL LINK
-          </button>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <h1>SSYouTube</h1>
+  <p class="subtitle">Download video YouTube cepat & gratis — MP4, MP3, kualitas tinggi!</p>
+  
+  <div class="input-group">
+    <input type="text" id="url" placeholder="Paste link YouTube di sini (contoh: https://youtu.be/...)" />
+    <button onclick="startDownload()">Download</button>
   </div>
 
-  <script>
-    const $ = (id) => document.getElementById(id);
+  <div class="formats" id="formats">
+    <h3>Pilih Format:</h3>
+    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror (contoh: y2mate/savefrom). Ganti link ini dengan API real jika pakai backend!')">MP4 720p</button>
+    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror...')">MP4 1080p</button>
+    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror...')">MP3 Audio (128kbps)</button>
+    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror...')">MP3 Audio (320kbps)</button>
+  </div>
 
-    $("tabTarget").onclick = () => {
-      $("tabTarget").classList.add("active");
-      $("tabLink").classList.remove("active");
-    };
+  <div class="info">
+    Tanpa iklan berlebihan • Aman & Cepat • Update Jan 2026<br>
+    Catatan: Gunakan untuk konten pribadi / fair use ya!
+  </div>
+</div>
 
-    $("tabLink").onclick = () => {
-      $("tabLink").classList.add("active");
-      $("tabTarget").classList.remove("active");
-      $("link").focus();
-    };
+<script>
+function startDownload() {
+  const url = document.getElementById('url').value.trim();
+  if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+    alert('Masukkan link YouTube yang valid bro!');
+    return;
+  }
 
-    function showToast(msg, payload){
-      $("toast").classList.add("show");
-      $("toastMsg").textContent = msg;
+  // Tampilkan pilihan format (simulasi)
+  document.getElementById('formats').style.display = 'block';
 
-      if (payload === undefined || payload === null) {
-        $("respBox").textContent = "";
-        return;
-      }
-      if (typeof payload === "string") $("respBox").textContent = payload;
-      else $("respBox").textContent = JSON.stringify(payload, null, 2);
-    }
+  // Kalau mau redirect ke situs alternatif (seperti opsi kemarin):
+  // window.open(`https://yt1s.com/id/youtube-to-mp4?url=${encodeURIComponent(url)}`, '_blank');
+}
+</script>
 
-    function normalizeReacts(str){
-      return str
-        .split(/[, ]+/)
-        .map(s => s.trim())
-        .filter(Boolean)
-        .join(",");
-    }
-
-    $("openBtn").onclick = () => {
-      const link = $("link").value.trim();
-      if (!link) return showToast("❌ Isi link dulu buat dibuka.");
-      window.open(link, "_blank", "noopener,noreferrer");
-      showToast("✅ Link dibuka. Follow/join manual dulu kalau perlu.");
-    };
-
-    $("clearBtn").onclick = () => {
-      $("link").value = "";
-      $("payload").value = "";
-      $("statusText").textContent = "idle";
-      $("toast").classList.remove("show");
-    };
-
-    $("runBtn").onclick = async () => {
-      const link = $("link").value.trim();
-      const payloadRaw = $("payload").value.trim();
-
-      if (!link) return showToast("❌ Link postingan wajib diisi.");
-      if (!payloadRaw) return showToast("❌ Reaction payload wajib diisi.");
-
-      const reacts = normalizeReacts(payloadRaw);
-      const body = { post_link: link, reacts };
-
-      $("runBtn").disabled = true;
-      $("statusText").textContent = "processing...";
-      showToast("⏳ Mengirim request...", body);
-
-      try{
-        const res = await fetch("/api/react", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(body)
-        });
-
-        const text = await res.text();
-        let data = text;
-        try { data = JSON.parse(text); } catch {}
-
-        if (res.ok) {
-          $("statusText").textContent = "done";
-          showToast("✅ Sukses diproses.", data);
-        } else {
-          $("statusText").textContent = "error";
-          showToast(`❌ Gagal (HTTP ${res.status})`, data);
-        }
-      } catch(e){
-        $("statusText").textContent = "error";
-        showToast("❌ Error request.", String(e));
-      } finally{
-        $("runBtn").disabled = false;
-      }
-    };
-
-    // Copy channel link
-    const CHANNEL_LINK = "https://whatsapp.com/channel/0029Vb6kx8FFi8xZBhjm2g0m";
-    $("copyChannelBtn").onclick = async () => {
-      try{
-        await navigator.clipboard.writeText(CHANNEL_LINK);
-        showToast("✅ Link saluran WA ke-copy.", CHANNEL_LINK);
-      }catch(e){
-        showToast("❌ Gagal copy. Copy manual aja ya:", CHANNEL_LINK);
-      }
-    };
-  </script>
 </body>
 </html>
