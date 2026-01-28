@@ -1,135 +1,156 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SSYouTube - Download Video YouTube Gratis</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    .container {
-      max-width: 580px;
-      margin: 60px auto;
-      padding: 40px 30px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-      text-align: center;
-    }
-    h1 {
-      color: #c4302b;
-      margin-bottom: 10px;
-      font-size: 2.4rem;
-    }
-    .subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-    input[type="text"] {
-      padding: 16px 20px;
-      font-size: 1.1rem;
-      border: 2px solid #ddd;
-      border-radius: 50px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    input[type="text"]:focus {
-      border-color: #c4302b;
-    }
-    button {
-      background: #c4302b;
-      color: white;
-      border: none;
-      padding: 16px 40px;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-weight: bold;
-    }
-    button:hover {
-      background: #a8241f;
-      transform: translateY(-2px);
-    }
-    .formats {
-      margin-top: 40px;
-      display: none; /* muncul setelah paste link */
-    }
-    .format-btn {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 14px 28px;
-      margin: 10px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: 0.3s;
-    }
-    .format-btn:hover { background: #388E3C; }
-    .info {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    @media (max-width: 500px) {
-      .container { margin: 30px 15px; padding: 30px 20px; }
-      h1 { font-size: 2rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2Mate - Pengunduh Video YouTube Gratis</title>
+    <meta name="description" content="Y2Mate adalah alat Pengunduh YouTube gratis dan tercepat yang membantu Anda dengan mudah mengonversi dan mengunduh Video Youtube dalam kualitas HD. Y2mate juga mendukung berbagai format video dan audio termasuk MP4, MP3, M4V, FLV, WEBM, dll.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; }
+        .container { max-width: 900px; }
+        .hero { padding: 60px 0; text-align: center; background: linear-gradient(to right, #ff416c, #ff4b2b); color: white; }
+        .result { margin-top: 30px; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>SSYouTube</h1>
-  <p class="subtitle">Download video YouTube cepat & gratis — MP4, MP3, kualitas tinggi!</p>
-  
-  <div class="input-group">
-    <input type="text" id="url" placeholder="Paste link YouTube di sini (contoh: https://youtu.be/...)" />
-    <button onclick="startDownload()">Download</button>
-  </div>
+    <!-- Header -->
+    <header class="bg-light py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0">Y2Mate - Pengunduh YouTube</h1>
+            <nav>
+                <a href="?lang=id" class="me-2">Indonesian</a> |
+                <a href="?lang=en">English</a> |
+                <!-- Tambah bahasa lain sesuai kebutuhan -->
+            </nav>
+        </div>
+    </header>
 
-  <div class="formats" id="formats">
-    <h3>Pilih Format:</h3>
-    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror (contoh: y2mate/savefrom). Ganti link ini dengan API real jika pakai backend!')">MP4 720p</button>
-    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror...')">MP4 1080p</button>
-    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror...')">MP3 Audio (128kbps)</button>
-    <button class="format-btn" onclick="alert('Fitur download redirect ke mirror...')">MP3 Audio (320kbps)</button>
-  </div>
+    <!-- Hero + Converter -->
+    <section class="hero">
+        <div class="container">
+            <h2>Y2Mate - Pengunduh Youtube Gratis & Cepat</h2>
+            <p class="lead">Tanpa iklan mengganggu • Tanpa registrasi • Support MP4, MP3, HD, 4K</p>
+            
+            <!-- Form Converter -->
+            <div class="my-4">
+                <input type="text" id="youtubeUrl" class="form-control form-control-lg" placeholder="Paste link YouTube di sini (contoh: https://www.youtube.com/watch?v=...)" />
+                <button id="convertBtn" class="btn btn-light btn-lg mt-3 w-100">Convert Sekarang</button>
+            </div>
+            
+            <p class="small">Dengan menggunakan layanan ini, Anda menyetujui <a href="/terms-condition/" class="text-white">Persyaratan Penggunaan</a></p>
+        </div>
+    </section>
 
-  <div class="info">
-    Tanpa iklan berlebihan • Aman & Cepat • Update Jan 2026<br>
-    Catatan: Gunakan untuk konten pribadi / fair use ya!
-  </div>
-</div>
+    <!-- Hasil Konversi (akan muncul setelah convert) -->
+    <section class="container result d-none" id="resultSection">
+        <h3>Hasil Konversi</h3>
+        <div id="videoInfo" class="mb-3"></div>
+        <div id="formatsList" class="row"></div>
+    </section>
 
-<script>
-function startDownload() {
-  const url = document.getElementById('url').value.trim();
-  if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
-    alert('Masukkan link YouTube yang valid bro!');
-    return;
-  }
+    <!-- Cara Menggunakan -->
+    <section class="container my-5">
+        <h3>Bagaimana Cara Mengunduh?</h3>
+        <ol>
+            <li>Tempel tautan video YouTube di kolom atas.</li>
+            <li>Klik "Convert Sekarang".</li>
+            <li>Pilih format (MP4/MP3) dan kualitas yang diinginkan.</li>
+            <li>Klik "Unduh" dan tunggu proses selesai.</li>
+        </ol>
+        <p><strong>Tip cepat:</strong> Tambahkan “SOS” sebelum link (contoh: soshttps://youtube.com/watch?v=...) lalu tekan Enter di browser.</p>
+    </section>
 
-  // Tampilkan pilihan format (simulasi)
-  document.getElementById('formats').style.display = 'block';
+    <!-- Fitur -->
+    <section class="container my-5">
+        <h3>Fitur Y2Mate</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Gratis tanpa batas</li>
+            <li class="list-group-item">Konversi cepat</li>
+            <li class="list-group-item">Support MP4, MP3, WEBM, hingga 4K</li>
+            <li class="list-group-item">Aman & kompatibel semua perangkat</li>
+        </ul>
+    </section>
 
-  // Kalau mau redirect ke situs alternatif (seperti opsi kemarin):
-  // window.open(`https://yt1s.com/id/youtube-to-mp4?url=${encodeURIComponent(url)}`, '_blank');
-}
-</script>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p>© 2026 Y2Mate Mirror • Install ekstensi Chrome untuk unduh lebih mudah!</p>
+    </footer>
 
+    <!-- JavaScript - API Converter -->
+    <script>
+        const convertBtn = document.getElementById('convertBtn');
+        const urlInput = document.getElementById('youtubeUrl');
+        const resultSection = document.getElementById('resultSection');
+        const videoInfo = document.getElementById('videoInfo');
+        const formatsList = document.getElementById('formatsList');
+
+        convertBtn.addEventListener('click', async () => {
+            const url = urlInput.value.trim();
+            if (!url || !url.includes('youtube.com') && !url.includes('youtu.be')) {
+                alert('Masukkan link YouTube yang valid!');
+                return;
+            }
+
+            resultSection.classList.remove('d-none');
+            videoInfo.innerHTML = '<p class="text-muted">Memproses...</p>';
+            formatsList.innerHTML = '';
+
+            try {
+                // Ganti endpoint ini dengan API asli jika kamu tahu (atau gunakan proxy/open source)
+                // Contoh endpoint hipotetis (bisa mati/berubah):
+                // const apiUrl = 'https://www-y2mate.com/api/convert';
+                // Alternatif mirror/open source (coba salah satu yang masih hidup):
+                const apiUrl = 'https://www.y2mate.com/api/ajaxSearch';  // pola lama Y2Mate
+                // Atau gunakan proxy seperti: https://cors-anywhere.herokuapp.com/ + original
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ url: url })  // atau { q: url } tergantung API
+                });
+
+                if (!response.ok) throw new Error('Gagal koneksi ke API');
+
+                const data = await response.json();
+
+                // Asumsi response JSON mirip Y2Mate: { title, thumbnail, links: { format: { ... } } }
+                if (data.status === 'ok' || data.title) {
+                    videoInfo.innerHTML = `
+                        <h4>${data.title || 'Judul Video'}</h4>
+                        <img src="${data.thumbnail || ''}" alt="Thumbnail" class="img-fluid mb-3" style="max-width: 320px;">
+                        <p>Durasi: ${data.duration || 'Tidak diketahui'}</p>
+                    `;
+
+                    // Tampilkan list format (contoh parsing)
+                    const links = data.links || {};  // sesuaikan dengan struktur JSON asli
+                    for (const [key, val] of Object.entries(links)) {
+                        const div = document.createElement('div');
+                        div.className = 'col-md-6 mb-3';
+                        div.innerHTML = `
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>${val.quality || key} - ${val.type || 'Video'}</h5>
+                                    <p>Ukuran: ${val.size || 'Tidak diketahui'}</p>
+                                    <a href="${val.url || '#'}" class="btn btn-success" target="_blank">Unduh ${val.type || 'File'}</a>
+                                </div>
+                            </div>
+                        `;
+                        formatsList.appendChild(div);
+                    }
+                } else {
+                    videoInfo.innerHTML = '<p class="text-danger">Gagal mendapatkan info video. Coba link lain atau API berubah.</p>';
+                }
+            } catch (err) {
+                videoInfo.innerHTML = `<p class="text-danger">Error: ${err.message}. API mungkin mati atau situs blokir request.</p>`;
+                console.error(err);
+            }
+        });
+    </script>
+
+    <!-- Optional: Bootstrap JS jika butuh -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
